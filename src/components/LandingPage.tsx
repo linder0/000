@@ -126,8 +126,8 @@ const LandingPage: React.FC = () => {
           </div>
         </div>
       </div>
-      {/* Background overlays */}
-      <div className="fixed inset-0 -z-20 overflow-hidden">
+      {/* Background video */}
+      <div className="fixed inset-0 -z-20">
         <video
           ref={videoRef}
           autoPlay
@@ -135,7 +135,6 @@ const LandingPage: React.FC = () => {
           muted
           playsInline
           className="w-full h-full object-cover object-center"
-          style={{ width: '100vw', height: '100dvh', minHeight: '100vh', minWidth: '100vw' }}
         >
           <source src="/videos/000background.mp4" type="video/mp4" />
           Your browser does not support the video tag.
