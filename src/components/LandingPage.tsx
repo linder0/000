@@ -9,6 +9,17 @@ const monoFont = { fontFamily: 'Space Mono, monospace', letterSpacing: '0.15em' 
 const TOP_MARQUEE = 'THIRD SPACER   •   A COMMUNITY-POWERED EXPERIMENT IN CREATIVE ABSURDITY.';
 const BOTTOM_MARQUEE = 'SUBMIT AN IDEA. VOTE FOR YOUR FAVORITE. GET IT IN THE MAIL. ONE PHYSICAL DROP. EVERY MONTH.';
 
+const FLASH_WORDS = [
+  'musical.',
+  'decisive.',
+  'weird.',
+  'secret.',
+  'special.',
+  'broken.',
+  'forgotten.',
+  'physical.',
+];
+
 function useSeamlessMarquee(text: string, speed = 18) {
   const trackRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLSpanElement>(null);
@@ -39,6 +50,7 @@ const LandingPage: React.FC = () => {
   const PLACEHOLDER_TEXT = 'enter your email';
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [flashIndex, setFlashIndex] = useState(0);
 
   // Marquee hooks for top and bottom
   const topMarquee = useSeamlessMarquee(TOP_MARQUEE, 18);
@@ -75,6 +87,13 @@ const LandingPage: React.FC = () => {
     if (videoRef.current) {
       videoRef.current.playbackRate = 0.7;
     }
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFlashIndex(i => (i + 1) % FLASH_WORDS.length);
+    }, 900);
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -135,6 +154,15 @@ const LandingPage: React.FC = () => {
           >
             <span className="whitespace-pre">{typed}</span>
             <span className="inline-block animate-blink">|</span>
+          </div>
+          {/* Teaser subtext */}
+          <div className="mb-8 text-base md:text-lg font-mono text-white text-center" style={{ ...monoFont }}>
+            Something small. Something{' '}
+            <span className="transition-colors duration-200" style={{ color: '#fff', fontWeight: 700 }}>
+              {FLASH_WORDS[flashIndex]}
+            </span>
+            <br/>
+            Final idea drops next Monday. Voting closes Sunday.
           </div>
           {/* Waitlist button or form */}
           {!showForm ? (
