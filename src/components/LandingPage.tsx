@@ -200,7 +200,6 @@ const LandingPage: React.FC = () => {
                 method="POST"
                 data-netlify="true"
                 target="hidden_iframe"
-                onSubmit={() => setIsSubmitted(true)}
                 className="flex flex-col sm:flex-row items-center gap-2 mt-4"
                 style={{ ...monoFont }}
               >
@@ -227,7 +226,13 @@ const LandingPage: React.FC = () => {
                   I'M IN
                 </button>
               </form>
-              <iframe name="hidden_iframe" style={{ display: 'none' }}></iframe>
+              <iframe
+                name="hidden_iframe"
+                style={{ display: 'none' }}
+                onLoad={() => {
+                  if (email) setIsSubmitted(true);
+                }}
+              />
             </div>
           )}
         </div>
