@@ -134,7 +134,7 @@ const LandingPage: React.FC = () => {
           loop
           muted
           playsInline
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover object-center"
           style={{ position: 'absolute', top: '2.2rem', left: 0, width: '100vw', height: 'calc(100vh - 4.4rem)' }}
         >
           <source src="/videos/000background.mp4" type="video/mp4" />
