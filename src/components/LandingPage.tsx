@@ -173,6 +173,26 @@ const LandingPage: React.FC = () => {
             >
               Join the Waitlist
             </button>
+          ) : isSubmitted ? (
+            <div className="w-full flex flex-col items-center justify-center animate-fade-in">
+              <div className="text-white text-center">
+                <div className="text-lg md:text-xl mb-4" style={{ ...monoFont }}>
+                  YOU'RE IN
+                </div>
+                <div className="text-sm md:text-base" style={{ ...monoFont }}>
+                  MORE DETAILS SOON.
+                </div>
+                <a
+                  href="https://www.instagram.com/thirdspacer/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block mt-6 text-white text-sm font-mono uppercase tracking-widest underline hover:text-gray-300"
+                  style={{ ...monoFont }}
+                >
+                  Spread the word @thirdspacer
+                </a>
+              </div>
+            </div>
           ) : (
             <div className="w-full flex flex-col items-center justify-center animate-fade-in">
               <form
