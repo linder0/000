@@ -162,7 +162,7 @@ const LandingPage: React.FC = () => {
               {FLASH_WORDS[flashIndex]}
             </span>
             <br/>
-            Final idea drops next Monday. Voting closes Sunday.
+            What do you want to see?
           </div>
           {/* Waitlist button or form */}
           {!showForm ? (
