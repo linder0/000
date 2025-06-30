@@ -100,7 +100,7 @@ const LandingPage: React.FC = () => {
     <div className="min-h-screen w-full flex flex-col justify-between overflow-hidden relative">
       {/* Top Marquee */}
       <div className="w-full absolute top-0 left-0 z-50 pointer-events-none" style={{height: '2.2rem'}}>
-        <div className="w-full h-full overflow-hidden flex items-center" style={{background: 'rgba(0,0,0,0.4)'}}>
+        <div className="w-full h-full overflow-hidden flex items-center" style={{background: '#000'}}>
           <div
             ref={topMarquee.trackRef}
             className="relative w-full h-full overflow-hidden"
@@ -239,7 +239,7 @@ const LandingPage: React.FC = () => {
       </div>
       {/* Bottom Marquee */}
       <div className="w-full absolute bottom-0 left-0 z-50 pointer-events-none" style={{height: '2.2rem'}}>
-        <div className="w-full h-full overflow-hidden flex items-center" style={{background: 'rgba(0,0,0,0.4)'}}>
+        <div className="w-full h-full overflow-hidden flex items-center" style={{background: '#000'}}>
           <div
             ref={bottomMarquee.trackRef}
             className="relative w-full h-full overflow-hidden"
