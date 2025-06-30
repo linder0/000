@@ -135,7 +135,7 @@ const LandingPage: React.FC = () => {
           muted
           playsInline
           className="w-full h-full object-cover object-center"
-          style={{ minHeight: '100%', minWidth: '100%' }}
+          style={{ width: '100vw', height: '100dvh', minHeight: '100vh', minWidth: '100vw' }}
         >
           <source src="/videos/000background.mp4" type="video/mp4" />
           Your browser does not support the video tag.
