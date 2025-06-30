@@ -36,8 +36,6 @@ const LandingPage: React.FC = () => {
   const [typed, setTyped] = useState('');
   const [typingForward, setTypingForward] = useState(true);
   const [placeholderScroll, setPlaceholderScroll] = useState(0);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const placeholderRef = useRef<HTMLInputElement>(null);
   const PLACEHOLDER_TEXT = 'enter your email for the first drop';
 
@@ -94,36 +92,6 @@ const LandingPage: React.FC = () => {
     frame = requestAnimationFrame(step);
     return () => cancelAnimationFrame(frame);
   }, [showForm]);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email || isSubmitting) return;
-
-    setIsSubmitting(true);
-
-    try {
-      // For Netlify Forms, we need to encode the data
-      const formData = new FormData();
-      formData.append('form-name', 'waitlist');
-      formData.append('email', email);
-
-      // Submit to Netlify
-      await fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(formData as any).toString(),
-      });
-
-      setIsSubmitted(true);
-      setEmail('');
-    } catch (error) {
-      console.error('Form submission error:', error);
-      // Still show success for better UX
-      setIsSubmitted(true);
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
 
   return (
     <div className="min-h-screen w-full flex flex-col justify-between bg-black overflow-hidden relative">
@@ -202,26 +170,15 @@ const LandingPage: React.FC = () => {
           >
             Join the Waitlist
           </button>
-        ) : isSubmitted ? (
-          <div className="w-full flex flex-col items-center justify-center animate-fade-in">
-            <div className="text-white text-center">
-              <div className="text-lg md:text-xl mb-4" style={{ ...monoFont }}>
-                YOU'RE IN
-              </div>
-              <div className="text-sm md:text-base opacity-80" style={{ ...monoFont }}>
-                MORE DETAILS SOON.
-              </div>
-            </div>
-          </div>
         ) : (
           <div className="w-full flex flex-col items-center justify-center animate-fade-in">
             <form
               name="waitlist"
               method="POST"
               data-netlify="true"
+              action="/success"
               className="flex flex-col sm:flex-row items-center gap-2 mt-4"
               style={{ ...monoFont }}
-              onSubmit={handleSubmit}
             >
               <input type="hidden" name="form-name" value="waitlist" />
               <div className="relative w-64 overflow-hidden">
@@ -235,7 +192,6 @@ const LandingPage: React.FC = () => {
                   autoFocus
                   style={monoFont}
                   required
-                  disabled={isSubmitting}
                 />
                 {/* Marquee placeholder */}
                 {!email && (
@@ -250,11 +206,10 @@ const LandingPage: React.FC = () => {
               </div>
               <button
                 type="submit"
-                disabled={isSubmitting}
-                className="px-6 py-2 font-mono uppercase tracking-widest bg-white text-black border-2 border-black rounded-md shadow hover:bg-black hover:text-white transition-colors duration-200 mt-2 sm:mt-0 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-6 py-2 font-mono uppercase tracking-widest bg-white text-black border-2 border-black rounded-md shadow hover:bg-black hover:text-white transition-colors duration-200 mt-2 sm:mt-0"
                 style={monoFont}
               >
-                {isSubmitting ? 'SENDING...' : "I'M IN"}
+                I'M IN
               </button>
             </form>
           </div>
