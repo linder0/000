@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 
 const TYPEWRITER_TEXT = 'drop 000';
 const TYPEWRITER_SPEED = 120; // ms per character
@@ -234,6 +235,34 @@ const LandingPage: React.FC = () => {
               />
             </div>
           )}
+        </div>
+        {/* Instagram logo link and projects link */}
+        <div className="w-full flex flex-col items-center" style={{position: 'relative', zIndex: 10}}>
+          <div className="mb-4 mt-2">
+            <a
+              href="https://www.instagram.com/thirdspacer/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Third Spacer Instagram"
+              className="hover:opacity-80 transition-opacity duration-200"
+              style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
+            >
+              <img
+                src="/images/ig logo.png"
+                alt="Instagram logo"
+                style={{ width: 55, height: 32, filter: 'invert(1)', display: 'block' }}
+              />
+            </a>
+          </div>
+          <div className="mb-16">
+            <Link
+              to="/projects"
+              className="text-xs md:text-sm font-mono tracking-widest uppercase text-white transition-colors duration-200 hover:underline focus:underline"
+              style={monoFont}
+            >
+              CLICK HERE FOR OUR PROJECTS
+            </Link>
+          </div>
         </div>
       </div>
       {/* Bottom Marquee */}
