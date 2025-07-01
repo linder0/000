@@ -248,7 +248,7 @@ const LandingPage: React.FC = () => {
               style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
             >
               <img
-                src="/images/ig logo.png"
+                src="/ig logo.png"
                 alt="Instagram logo"
                 style={{ width: 55, height: 32, filter: 'invert(1)', display: 'block' }}
               />
